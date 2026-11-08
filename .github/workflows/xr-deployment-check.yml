@@ -1,0 +1,18 @@
+name: XR deployment capability check
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/xr-deployment-check.yml'
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Verify runner and CLI availability
+        run: |
+          gh --version
+          python3 --version
+          echo 'Runner check only. No release or asset is created or modified.'
